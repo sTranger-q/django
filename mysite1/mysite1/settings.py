@@ -15,6 +15,10 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# 返回setting文件绝对路劲: /home/stranger/Django/mysite1/mysite1/settings.py
+# print(os.path.abspath(__file__))
+# 项目绝对路劲 /home/stranger/Django/mysite1
+# print(BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -24,9 +28,12 @@ SECRET_KEY = 'bbjjz%ayoyd$9ntra-=3zt-g!p201c_2rz6pi)t(e64rd8#cnw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# 启动模式  True-->调试模式【自动重启】
+# 提供报错页
 
+# 默认情况下支持  127.0.0.1 localhost
+# ALLOWED_HOSTS = ['域名/公网ip']
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -49,6 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# 住路由位置
 ROOT_URLCONF = 'mysite1.urls'
 
 TEMPLATES = [
@@ -69,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite1.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -79,7 +86,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -99,20 +105,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# 默认语言
+LANGUAGE_CODE = 'zh-Hans'
 
-TIME_ZONE = 'UTC'
+# 时区 默认格林威治-->UTC   东八-->Asia/Shanghai
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
