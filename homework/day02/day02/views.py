@@ -16,5 +16,6 @@ def page_view(request, page):
     return render(request, 'page%s.html' % page)
 
 
-def test_view(request):
-    return HttpResponseRedirect(reverse('page', args=[1]))
+# def test_view(request):
+#     print(reverse('page', args=[1]))
+#     return HttpResponseRedirect(reverse('page', args=[1]))

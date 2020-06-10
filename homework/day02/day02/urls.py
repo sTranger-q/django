@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('index', views.index_view, name='myindex'),
     path('page/<int:page>', views.page_view, name='page'),
-    path('test', views.test_view)
+    # path('test', views.test_view)
 ]
