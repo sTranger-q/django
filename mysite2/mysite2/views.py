@@ -1,6 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
+from django.urls import reverse
 
 
 def test_html(request):
@@ -79,4 +80,6 @@ def music_view(request):
 
 
 def sports_view(request):
-    return render(request, 'sports.html')
+    print('url is', reverse('music_url'))
+    return HttpResponseRedirect(reverse('music_url'))
+    # return render(request, 'sports.html')
