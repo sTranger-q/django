@@ -14,7 +14,9 @@ def test_html(request):
 
     # 方案2 render
     dict01 = {}
-    dict01['username'] = 'zhongjian'
+    dict01['str'] = 'zhongjian'
     dict01['age'] = 18
+    dict01['lst'] = ['Jack', 'Tom', 'Lily']
+    dict01['d'] = {'name': 'guoxiaonao', 'desc': 'haha'}
 
     return render(request, 'test_html.html', dict01)
