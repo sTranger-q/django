@@ -7,8 +7,8 @@
 <body>
 <h1>测试页面</h1>
 {#<h2 >这是{{ str }}第一个模板，他今年{{ age }}岁</h2>#}
-<h3> str is {{ str }}</h3>
-<h3> int is {{ int }}</h3>
+<h3> str is {{ str|upper }}</h3>
+<h3> int is {{ int|add:'10' }}</h3>
 <h3> lst is {{ lst }}</h3>
 <h3> lst[01] is {{ lst.1 }}</h3>
 
@@ -19,8 +19,8 @@
 <h3>obj is {{ obj }}</h3>
 <h3>obj is {{ obj.say }}</h3>
 
-
-<h3>script is {{ script }}</h3>
+{#setting配置语言为汉字时，会没有...#}
+<h3>script is {{ script|truncatechars:'10' }}</h3>
 {#<h3>script is safe {{ script|safe }}</h3>#}
 
 {% if int > 10 %}
@@ -28,6 +28,20 @@
 {% else %}
     今天天气不好
 {% endif %}
+
+{% for i in lst %}
+    {% if forloop.first %}
+    <p>==================</p>
+    {% endif %}
+    <p> {{ forloop.counter }} 名字: {{ i }}</p>
+{#    <p>{{ forloop.revcounter }}</p>#}
+{#    <p>{{ forloop.revcounter0 }}</p>#}
+    {% if forloop.last %}
+    <p>====================</p>
+    {% endif %}
+    {% empty %}
+    <p>对不起,没有名字</p>
+{% endfor %}
 
 </body>
 </html>

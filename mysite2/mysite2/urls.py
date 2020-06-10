@@ -21,5 +21,8 @@ from mysite2 import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('test_html', views.test_html),
-    path('mycal',views.mycal)
+    path('mycal', views.mycal),
+    path('test_base', views.base_view),
+    path('test_music', views.music_view, name='music_url'),
+    path('test_sports', views.sports_view),
 ]

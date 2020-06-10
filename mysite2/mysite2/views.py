@@ -16,7 +16,8 @@ def test_html(request):
     dict01 = {}
     dict01['str'] = 'zhongjian'
     dict01['int'] = 18
-    dict01['lst'] = ['Jack', 'Tom', 'Lily']
+    # dict01['lst'] = ['Jack', 'Tom', 'Lily']
+    dict01['lst'] = []
     dict01['d'] = {'name': 'guoxiaonao', 'desc': 'haha'}
     dict01['function'] = say_hi
     dict01['obj'] = Dog()
@@ -66,3 +67,16 @@ def mycal(request):
                 res = x / y
 
         return render(request, 'cal_test.html', locals())
+
+
+def base_view(request):
+    lst = ['Tom']
+    return render(request, 'base.html', locals())
+
+
+def music_view(request):
+    return render(request, 'music.html')
+
+
+def sports_view(request):
+    return render(request, 'sports.html')
