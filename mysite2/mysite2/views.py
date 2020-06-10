@@ -18,5 +18,19 @@ def test_html(request):
     dict01['age'] = 18
     dict01['lst'] = ['Jack', 'Tom', 'Lily']
     dict01['d'] = {'name': 'guoxiaonao', 'desc': 'haha'}
+    dict01['function'] = say_hi
+    dict01['obj'] = Dog()
+    # script is &lt;script&gt;alert(11)&lt;/script&gt;
+    dict01['script'] = '<script>alert(11)</script>'
 
     return render(request, 'test_html.html', dict01)
+
+
+def say_hi():
+    return 'hahahahahh'
+
+
+class Dog:
+
+    def say(self):
+        return 'wangwang'
