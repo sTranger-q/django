@@ -15,7 +15,7 @@ def test_html(request):
     # 方案2 render
     dict01 = {}
     dict01['str'] = 'zhongjian'
-    dict01['age'] = 18
+    dict01['int'] = 18
     dict01['lst'] = ['Jack', 'Tom', 'Lily']
     dict01['d'] = {'name': 'guoxiaonao', 'desc': 'haha'}
     dict01['function'] = say_hi
@@ -34,3 +34,35 @@ class Dog:
 
     def say(self):
         return 'wangwang'
+
+
+def mycal(request):
+    # dict01 = {}
+    if request.method == "GET":
+        x = 1
+        op = 'add'
+        y = 2
+        res = 3
+        return render(request, 'cal_test.html', locals())
+    if request.method == 'POST':
+        try:
+            x = int(request.POST['x'])
+            op = request.POST['op']
+            y = int(request.POST['y'])
+        except ValueError:
+            return HttpResponse('Please give me number')
+        # if not x or not y:
+        #     return HttpResponse('Please give me number!!')
+        if op == 'add':
+            res = x + y
+        elif op == 'sub':
+            res = x - y
+        elif op == 'mul':
+            res = x * y
+        elif op == 'div':
+            if y == 0:
+                return HttpResponse("y can't be 0")
+            else:
+                res = x / y
+
+        return render(request, 'cal_test.html', locals())

@@ -20,5 +20,6 @@ from mysite2 import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('test_html', views.test_html)
+    path('test_html', views.test_html),
+    path('mycal',views.mycal)
 ]
