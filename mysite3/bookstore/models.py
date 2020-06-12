@@ -8,6 +8,7 @@ class Book(models.Model):
                                 default=0.0)
     # 新增字段，必须+default
     pub = models.CharField('出版社', max_length=120, default='')
+    author = models.CharField('作者', max_length=50, default='')
 
     class Meta:
-        db_table = 'book'
+        db_table = 'books'
