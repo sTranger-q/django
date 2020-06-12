@@ -113,6 +113,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# tuple 一个元素，后面必须加逗号
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
