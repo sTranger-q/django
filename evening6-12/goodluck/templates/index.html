@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
+    <script src='./js/jquery.min.js'></script>
     {% load static %}
     <style>
-        .div1 {
-            width: 584px;
+         table {
+            list-style: none;
+            border: none;
             margin: 0 auto;
         }
-        table{
-            list-style: none;
-        }
-        img,tr,td{
-            border: 0;
-            margin: 0;
-            padding: 0;
-        }
         .luck {
-            border: 5px solid greenyellow;
-
+            transition: 0.05s;
+            border: solid 5px rgba(200, 200, 200, 0);
         }
+        .gre {
+            border: 5px solid greenyellow;
+        }
+
     </style>
 </head>
 <body>
@@ -35,14 +33,14 @@
                     <tr>
                 {% endif %}
             {% if forloop.counter == 5 %}
-                <td><img class="luck" src="{% static 'images/prize9.jpg' %}"
+                <td><img src="{% static 'images/prize9.jpg' %}"
                          alt=""></td>
             {% else %}
-                <td><img src='{{ prize }}' alt="aha"></td>
+                <td><img class="luck" src='{{ prize }}' alt="aha"></td>
             {% endif %}
 
             {% if forloop.counter == 8 %}
-                <td><img src='{{ prizes.4 }}' alt="aha"></td>
+                <td><img class="luck" src='{{ prizes.4 }}' alt="aha"></td>
                 </tr>
             {% endif %}
             {% endfor %}
