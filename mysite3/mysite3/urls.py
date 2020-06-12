@@ -20,5 +20,5 @@ from mysite3 import Views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('test', Views.test_static)
+    path('test_static', Views.test_static)
 ]

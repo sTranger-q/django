@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Static</title>
+    {% load static %}
 </head>
 <body>
-<img src="/static/images/http.jpeg" alt="aha">
+<img src="/static/images/orm.png" alt="aha">
+<img src="{% static 'images/urls.png' %}" alt="">
 </body>
 </html>
