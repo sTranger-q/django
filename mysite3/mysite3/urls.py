@@ -23,5 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('test_static', Views.test_static),
     # http:127.0.0.1:8000/music/xxxx-->music应用处理
-    path('music/', include('music.urls'))
+    path('music/', include('music.urls')),
+    path('sport/', include('sport.urls')),
+    path('news/', include('news.urls')),
 ]
