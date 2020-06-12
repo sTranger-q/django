@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
-    <script src='./js/jquery.min.js'></script>
+    <script src='/static/js/jquery.min.js'></script>
     {% load static %}
     <style>
          table {
@@ -33,7 +33,7 @@
                     <tr>
                 {% endif %}
             {% if forloop.counter == 5 %}
-                <td><img src="{% static 'images/prize9.jpg' %}"
+                <td><img id="btn" src="{% static 'images/prize9.jpg' %}"
                          alt=""></td>
             {% else %}
                 <td><img class="luck" src='{{ prize }}' alt="aha"></td>
@@ -46,6 +46,7 @@
             {% endfor %}
     </table>
 </div>
+    <script src="/static/js/good.js"></script>
 
 </body>
 </html>
