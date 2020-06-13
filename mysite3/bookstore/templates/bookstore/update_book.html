@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update_book</title>
+
+</head>
+<body>
+<div>
+    <form action="" method="post">
+        <p>
+            <label for="title"> title:</label>
+            <input type="text" name="title"
+                   disabled value="{{ book.title }}">
+        </p>
+        <p>
+            <label for="pub">pub:</label>
+            <input type="text" disabled name="pub" value="{{ book.pub }}">
+        </p>
+        <p>
+            <label for="price">price:</label>
+            <input type="text" disabled name="price" value="{{ book.price }}">
+        </p>
+        <p>
+            <label for="marketPrice">market_price</label>
+            <input type="text" name="marketPrice"
+                   value="{{ book.market_price }}">
+        </p>
+        <button>更新</button>
+    </form>
+    <script>
+        var form = document.getElementsByTagName('form')[0];
+        form.action = location
+    </script>
+</div>
+</body>
+</html>
