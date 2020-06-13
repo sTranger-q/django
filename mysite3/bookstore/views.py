@@ -48,3 +48,6 @@ def delete_book(request):
         print('-- no book--')
         return HttpResponse('---book id error---')
     return HttpResponseRedirect('/bookstore/all_book')
+
+
+
