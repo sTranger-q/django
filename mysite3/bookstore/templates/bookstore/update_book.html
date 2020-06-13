@@ -3,29 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Update_book</title>
-
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div>
-    <form action="" method="post">
-        <p>
+    <form action="" method="post" class="form-control">
+        <div class="form-group">
             <label for="title"> title:</label>
             <input type="text" name="title"
                    disabled value="{{ book.title }}">
-        </p>
-        <p>
+        </div>
+        <div class="form-group">
             <label for="pub">pub:</label>
             <input type="text" disabled name="pub" value="{{ book.pub }}">
-        </p>
-        <p>
+        </div>
+        <div class="form-group">
             <label for="price">price:</label>
             <input type="text" disabled name="price" value="{{ book.price }}">
-        </p>
-        <p>
+        </div>
+        <div class="form-group">
             <label for="marketPrice">market_price</label>
             <input type="text" name="marketPrice"
                    value="{{ book.market_price }}">
-        </p>
+        </div>
         <button>更新</button>
     </form>
     <script>
