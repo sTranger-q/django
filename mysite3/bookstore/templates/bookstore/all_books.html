@@ -36,8 +36,9 @@
                 {% for info in book %}
                     <td>{{ info }}</td>
                 {% endfor %}
-                <td><a href="/bookstore/update_book/{{ book.0 }}">更新</a> <a
-                        href="#">删除</a></td>
+                <td><a href="/bookstore/update_book/{{ book.0 }}">更新</a>
+                    <a href="/bookstore/delete_book?bid=
+{{ book.0 }}">删除</a></td>
             {% endif %}
         {% endfor %}
         </tr>

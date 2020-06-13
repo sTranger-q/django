@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 
 # Create your views here.
 def all_book(request):
-    books = Book.objects.all()
+    books = Book.objects.filter(is_active=True)
     lis = []
     for book in books:
         lis.append(
@@ -17,7 +17,7 @@ def all_book(request):
 
 def update_book(request, bid):
     try:
-        book = Book.objects.get(id=bid)
+        book = Book.objects.get(id=bid, is_active=True)
     except Exception as e:
         print('--update book error--')
         return HttpResponse('---book id error---')
@@ -30,3 +30,21 @@ def update_book(request, bid):
         except Exception as e:
             return HttpResponse('---book id error---')
         return HttpResponseRedirect('/bookstore/all_book')
+
+
+def delete_book(request):
+    bid = request.GET.get('bid')
+    if not bid:
+        return HttpResponse('--bid is error')
+    try:
+        book = Book.objects.get(id=bid, is_active=True)
+    except Exception as e:
+        print('-- no book--')
+        return HttpResponse('---book id error---')
+    try:
+        book.is_active = False
+        book.save()
+    except Exception as e:
+        print('-- no book--')
+        return HttpResponse('---book id error---')
+    return HttpResponseRedirect('/bookstore/all_book')
