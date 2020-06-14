@@ -57,7 +57,7 @@ def test_get_post(request):
     # print('query string is ', request.GET['c'])
     # print(request.GET.get('z', 'no key'))
 
-    # ?a=100&b=200&a=100
+    # ?a=100&b=200&a=300
     # print(request.GET['a'])  # --> 300
     # print((request.GET.getlist('a', 'no key')))
 
