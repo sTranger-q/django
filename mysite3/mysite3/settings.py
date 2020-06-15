@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bookstore',
     'oto',
     'otd',
+    'mtm',
 ]
 
 MIDDLEWARE = [
