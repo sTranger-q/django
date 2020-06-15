@@ -20,6 +20,8 @@ class Book(models.Model):
 
     class Meta:
         db_table = 'books'
+        verbose_name = '图书'
+        verbose_name_plural = verbose_name
 
 
 class Author(models.Model):
@@ -30,3 +32,5 @@ class Author(models.Model):
 
     class Meta:
         db_table = 'author'
+        verbose_name = '作家'
+        verbose_name_plural = verbose_name
