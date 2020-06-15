@@ -9,6 +9,7 @@ class AuthorManager(admin.ModelAdmin):
 
 class WifeManager(admin.ModelAdmin):
     list_display = ['id', 'name', 'author']
+    search_fields = ['name']
 
 
 admin.site.register(Author, AuthorManager)
