@@ -16,15 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from mysite3 import Views
+from mysite3 import views
 from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('test_static', Views.test_static),
+    path('test_static', views.test_static),
     # http:127.0.0.1:8000/music/xxxx-->music应用处理
     path('music/', include('music.urls')),
     path('sport/', include('sport.urls')),
     path('news/', include('news.urls')),
-    path('bookstore/', include('bookstore.urls'))
+    path('bookstore/', include('bookstore.urls')),
+    path('set_cookies', views.test_set_cookies),
 ]
