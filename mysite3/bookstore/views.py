@@ -6,13 +6,11 @@ from django.http import HttpResponseRedirect, HttpResponse
 # Create your views here.
 def all_book(request):
     books = Book.objects.filter(is_active=True)
-    lis = []
-    for book in books:
-        lis.append(
-            [book.id, book.title, book.pub, book.price, book.market_price])
-        lis.append('换行')
-    lis.pop()
-    return render(request, 'bookstore/all_books.html', {'books': lis})
+
+    return render(request,
+                  'bookstore/all_books.html',
+                  locals()
+                  )
 
 
 def update_book(request, bid):
@@ -22,7 +20,9 @@ def update_book(request, bid):
         print('--update book error--')
         return HttpResponse('---book id error---')
     if request.method == 'GET':
-        return render(request, 'bookstore/update_book.html', locals())
+        return render(request,
+                      'bookstore/update_book.html',
+                      locals())
     elif request.method == 'POST':
         try:
             book.market_price = request.POST['marketPrice']
@@ -37,7 +37,8 @@ def delete_book(request):
     if not bid:
         return HttpResponse('--bid is error')
     try:
-        book = Book.objects.get(id=bid, is_active=True)
+        book = Book.objects.get(id=bid,
+                                is_active=True)
     except Exception as e:
         print('-- no book--')
         return HttpResponse('---book id error---')
@@ -48,6 +49,3 @@ def delete_book(request):
         print('-- no book--')
         return HttpResponse('---book id error---')
     return HttpResponseRedirect('/bookstore/all_book')
-
-
-

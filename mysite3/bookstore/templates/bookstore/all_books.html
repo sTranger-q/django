@@ -20,28 +20,27 @@
 {#        <div class="col-md-6">#}
 <table class="table-bordered">
     <tr>
-        <td>id</td>
+{#        <td>id</td>#}
         <td>title</td>
         <td>pub</td>
         <td>price</td>
         <td>market_price</td>
         <td>op</td>
     </tr>
-    <tr>
-        {% for book in books %}
-            {% if book == '换行' %}
-                </tr>
-                <tr>
-            {% else %}
-                {% for info in book %}
-                    <td>{{ info }}</td>
-                {% endfor %}
-                <td><a href="/bookstore/update_book/{{ book.0 }}">更新</a>
-                    <a href="/bookstore/delete_book?bid=
-{{ book.0 }}">删除</a></td>
-            {% endif %}
-        {% endfor %}
+
+    {% for book in books %}
+        <tr>
+
+{#            <td>{{ book.id }}</td>#}
+            <td>{{ book.title }}</td>
+            <td>{{ book.pub }}</td>
+            <td>{{ book.price }}</td>
+            <td>{{ book.market_price }}</td>
+            <td><a href="/bookstore/update_book/{{ book.id }}">更新</a>
+                <a href="/bookstore/delete_book?bid={{ book.id }}">删除</a></td>
         </tr>
+    {% endfor %}
+
 </table>
 {#        </div>#}
 {#    </div>#}
