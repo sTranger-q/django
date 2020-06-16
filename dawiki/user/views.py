@@ -8,13 +8,23 @@ import hashlib
 def login_view(request):
     if request.method == 'GET':
         # 判断session
-        uname = request.session.get('username')
-        if not uname:
-            uname = request.COOKIES.get('username')
-            if not uname:
-                return render(request, 'user/login.html')
-            request.session['username'] = uname
-        return HttpResponse(uname)
+        # uname = request.session.get('username')
+        # if not uname:
+        #     # 判断Cookies
+        #     uname = request.COOKIES.get('username')
+        #     if not uname:
+        #         return render(request, 'user/login.html')
+        #     request.session['username'] = uname
+        # return HttpResponseRedirect('/')
+        if 'username' in request.session and 'uid' in request.session:
+            return HttpResponseRedirect('/')
+        username = request.COOKIES.get('username')
+        uid = request.COOKIES.get('uid')
+        if username and uid:
+            request.session['username'] = username
+            request.session['uid'] = uid
+            return HttpResponseRedirect('/')
+        return render(request, 'user/login.html')
     elif request.method == 'POST':
         username = request.POST.get('username')
         pd_in = request.POST.get('password')
@@ -34,7 +44,7 @@ def login_view(request):
             res = HttpResponse('login successfully')
             if 'remember' in request.POST:
                 res.set_cookie('uid', old_user.id, 3600 * 24 * 3)
-                res.set_cookie(('username', username, 3600 * 24 * 3))
+                res.set_cookie('username', username, 3600 * 24 * 3)
             return res
         else:
             return HttpResponseRedirect('/user/login')
@@ -61,15 +71,25 @@ def reg_view(request):
             password_h = m.hexdigest()
             try:
                 # 存在高并发问题
-                User.objects.create(username=un, password=password_h)
+                new_user = User.objects.create(username=un, password=password_h)
 
                 # 免登录一天
-                request.session['username'] = un
+                request.session['username'] = new_user.username
+                request.session['uid'] = new_user.id
 
                 return HttpResponse('注册成功')
             except Exception as e:
                 return HttpResponse('The username is already existed')
 
 
-def logout_view(reques):
-    pass
+def logout_view(request):
+    if 'username' in request.session:
+        del request.session['username']
+    if 'uid' in request.session:
+        del request.session['uid']
+    response = HttpResponseRedirect('/')
+    if 'username' in request.COOKIES:
+        response.delete_cookie('username')
+    if 'uid' in request.COOKIES:
+        response.delete_cookie('uid')
+    return response
