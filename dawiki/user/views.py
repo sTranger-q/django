@@ -10,5 +10,5 @@ def reg_view(request):
     pass
 
 
-def logout_view(request):
+def logout_view(reques):
     pass
