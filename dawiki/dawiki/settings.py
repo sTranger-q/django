@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user',
+    'note',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+SESSION_COOKIE_AGE = 60 * 60 * 24

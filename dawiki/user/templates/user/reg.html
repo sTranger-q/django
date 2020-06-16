@@ -9,14 +9,34 @@
     <script src="/static/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-6"></div>
-            <div class="col-md-3 col-sm-6 col-xs-6"></div>
-            <div class="col-md-3 col-sm-6 col-xs-6"></div>
-            <div class="col-md-3 col-sm-6 col-xs-6"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <form action="#" class="login" method="post">
+                <div class="form-group">
+                    <label for="username">用户名：</label>
+                    <input type="text" name="username" class="form-control"
+                           id="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">密码：</label>
+                    <input type="password" id="password" name="password"
+                           class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="sure_pd">确认密码：</label>
+                    <input type="password" id="sure_pd" name="sure_pd"
+                           class="form-control">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-info" id="btn">注册</button>
+                </div>
+
+            </form>
         </div>
     </div>
-    
+</div>
+<script src="/static/js/reg.js"></script>
 </body>
 </html>
