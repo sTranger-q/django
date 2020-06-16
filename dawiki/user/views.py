@@ -41,7 +41,7 @@ def login_view(request):
         if p.hexdigest() == old_user.password:
             request.session['uid'] = old_user.id
             request.session['username'] = username
-            res = HttpResponse('login successfully')
+            res = HttpResponseRedirect('/')
             if 'remember' in request.POST:
                 res.set_cookie('uid', old_user.id, 3600 * 24 * 3)
                 res.set_cookie('username', username, 3600 * 24 * 3)

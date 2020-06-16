@@ -7,19 +7,42 @@
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+    <style>
+        .div1 {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .d2, .d3 {
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
+<div class="container div1">
     <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-6">
-            <a href="/user/login">登录</a>
+        <div class="col-md-1 col-sm-1 col-xs-1 d2" style="text-align: right">
+            欢迎:
         </div>
-        <div class="col-md-3 col-sm-6 col-xs-6">
+        <div class="col-md-1 col-sm-1 col-xs-1 d3" id="log">
+            <a href="/user/login" style="text-align: right">请登录</a>
+        </div>
+        <div class="col-md-1 col-sm-2 col-xs-1" id="reg">
             <a href="/user/reg">注册</a>
         </div>
 
     </div>
 </div>
+<script>
+    if ('{{ username }}' != 'None') {
 
+        $('#log').html('<span style="text-align: right">{{ username }}</span>')
+        $('#reg').html('<a href="/user/logout">退出登录</a>')
+        var div = $('<div class="col-md-2 col-sm-2 col-xs-2" id="reg">\n' +
+            '<a href="/note">进入我的笔记</a>\n' +
+            '</div>')
+        $('#reg').after(div)
+    }
+</script>
 </body>
 </html>

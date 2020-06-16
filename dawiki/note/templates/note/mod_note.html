@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <form action="/note/mod/{{ note.id }}" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" style="text-align: center">
+
+                    <label for="title" class="">主题</label>
+                    <input class="form-control"
+                           id="title" type="text" name="title" value="
+{{ note.title }}">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <textarea class="form-control" rows="5"
+                          name="content">{{ note.content }}</textarea>
+                <button class="btn btn-danger">提交</button>
+                <a href="/note">
+                    <button type="button" class="btn btn-success">返回列表</button>
+                </a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>
