@@ -7,19 +7,35 @@ import hashlib
 # Create your views here.
 def login_view(request):
     if request.method == 'GET':
-        return render(request, 'user/login.html')
+        # 判断session
+        uname = request.session.get('username')
+        if not uname:
+            uname = request.COOKIES.get('username')
+            if not uname:
+                return render(request, 'user/login.html')
+            request.session['username'] = uname
+        return HttpResponse(uname)
     elif request.method == 'POST':
         username = request.POST.get('username')
         pd_in = request.POST.get('password')
         if not username or not pd_in:
             return HttpResponseRedirect('/user/login')
         try:
-            pd = User.objects.get(username=username).password
+            old_user = User.objects.get(username=username)
+
+
         except Exception as e:
             return HttpResponseRedirect('/user/login')
-        if pd_in == pd:
+        p = hashlib.md5()
+        p.update(pd_in.encode())
+        if p.hexdigest() == old_user.password:
+            request.session['uid'] = old_user.id
             request.session['username'] = username
-            return HttpResponse('login successfully')
+            res = HttpResponse('login successfully')
+            if 'remember' in request.POST:
+                res.set_cookie('uid', old_user.id, 3600 * 24 * 3)
+                res.set_cookie(('username', username, 3600 * 24 * 3))
+            return res
         else:
             return HttpResponseRedirect('/user/login')
 
