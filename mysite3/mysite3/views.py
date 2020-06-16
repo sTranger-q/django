@@ -26,4 +26,5 @@ def set_sessions(request):
 
 
 def get_sessions(request):
-    return HttpResponse('session name is %s' % request.session['name'])
+    return HttpResponse('session name is %s' % request.session.get('name',
+                                                                   'no data'))
