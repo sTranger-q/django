@@ -48,7 +48,16 @@
     </div>
 </div>
 <script src="/static/js/log.js"></script>
+{% if messages %}
+    <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}')
+        {% endfor %}
+    </script>
+{% endif %}
+<script>
 
+</script>
 
 </body>
 </html>
