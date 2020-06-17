@@ -52,7 +52,7 @@ ROOT_URLCONF = 'mysite7.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,6 +98,18 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+        'TIMEOUT': 300,  # 缓存保存时间 单位秒，默认值为300,
+        'OPTIONS': {
+            'MAX_ENTRIES': 300,  # 缓存最大数据条数
+            'CULL_FREQUENCY': 2,  # 缓存条数达到最大值时 删除1/x的缓存数据
+        }
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
