@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '=52+38)3y%=eze=roz+9xsbvq1+qr6nmwd^^!qt#d0t##v%hpz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -130,3 +130,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# 发送邮件设置
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# 固定写法
+EMAIL_HOST = 'smtp.qq.com'
+# 腾讯QQ邮箱 SMTP 服务器地址
+EMAIL_PORT = 25
+# SMTP服务的端口号
+EMAIL_HOST_USER = '853561128@qq.com'
+# 发送邮件的QQ邮箱
+EMAIL_HOST_PASSWORD = 'xczsujjkytmpbfca'
+# 在QQ邮箱->设置->帐户->“POP3/IMAP......服务” 里得到的在第三方登录QQ邮箱授权码
+

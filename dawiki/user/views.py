@@ -82,9 +82,12 @@ def reg_view(request):
         pd_2 = request.POST.get('sure_pd')
         if not un or not pd_1 or not pd_2:
             return HttpResponseRedirect('/user/reg')
+        if pd_1 != pd_2:
+            return HttpResponseRedirect('/user/reg')
         try:
             User.objects.get(username=un)
-            return HttpResponse('The username is already existed')
+            messages.error(request, '账户已存在1')
+            return HttpResponseRedirect('/user/reg')
         except Exception as e:
             # 密码处理
             # hash算法:明文--->hash值
@@ -99,10 +102,11 @@ def reg_view(request):
                 # 免登录一天
                 request.session['username'] = new_user.username
                 request.session['uid'] = new_user.id
-
-                return HttpResponse('注册成功')
+                messages.success(request, '注册成功')
+                return HttpResponseRedirect('/')
             except Exception as e:
-                return HttpResponse('The username is already existed')
+                messages.error(request, '已存在')
+                return HttpResponseRedirect('/user/regredis')
 
 
 def logout_view(request):
