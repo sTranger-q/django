@@ -8,4 +8,7 @@ function createXhr(){
     return xhr;
 }
 
-var btn=document.getElementsByClassName('btn')[0];
+function getXhr(){
+    var xhr=createXhr();
+    xhr.open('GET','/test_xhr_get_server',true)
+}
