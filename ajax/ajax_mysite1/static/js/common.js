@@ -7,3 +7,5 @@ function createXhr(){
     }
     return xhr;
 }
+
+var btn=document.getElementsByClassName('btn')[0];
