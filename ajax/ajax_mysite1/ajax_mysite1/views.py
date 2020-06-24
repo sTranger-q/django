@@ -12,3 +12,13 @@ def test_xhr_get(request):
 
 def test_xhr_get_server(request):
     return HttpResponse('This is Ajax')
+
+
+def reg_view(request):
+    return render(request, 'reg.html')
+
+def judge_username(request):
+    uname=request.GET['username']
+    if uname=='stranger':
+        return HttpResponse('2')
+    return HttpResponse('1')

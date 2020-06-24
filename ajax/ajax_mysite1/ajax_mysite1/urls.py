@@ -23,4 +23,6 @@ urlpatterns = [
     path('test', views.test_view),
     path('test_xhr_get', views.test_xhr_get),
     path('test_xhr_get_server', views.test_xhr_get_server),
+    path('reg',views.reg_view),
+    path('judge_username',views.judge_username),
 ]

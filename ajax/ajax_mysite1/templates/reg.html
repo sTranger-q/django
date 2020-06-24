@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/common.js"></script>
+</head>
+
+<body>
+    <form action="#">
+        <label for="username">
+            用户名：<input type="text" name="username" ,id='username'>
+        </label><span id='tip'></span>
+        <br>
+        <label for="password">
+            密码: <input type="password" name="password">
+        </label>
+    </form>
+    <script>
+        $(function () {
+            $('#username').blur(function () {
+                var xhr = createXhr();
+                var url = '/judge_username?username=' + $('#username').val();
+                console.log(rul);
+                xhr.open('GET', url, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        if (xhr.responseText == '1') {
+                            $('#tip').html('可');
+                        } else {
+                            $('#tip').html('用户名已存在');
+                        }
+                    }
+                }
+                xhr.send(null);
+            })
+        })
+    </script>
+</body>
+
+</html>
