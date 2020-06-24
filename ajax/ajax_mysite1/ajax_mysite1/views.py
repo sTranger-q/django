@@ -17,8 +17,13 @@ def test_xhr_get_server(request):
 def reg_view(request):
     return render(request, 'reg.html')
 
+
 def judge_username(request):
-    uname=request.GET['id']
-    if uname=='stranger':
-        return HttpResponse('用户名已存在')
-    return HttpResponse('用户名可用')
+    if request.method == 'GET':
+        uname = request.GET['uname']
+        if uname == 'stranger':
+            return HttpResponse('用户名已存在')
+        return HttpResponse('用户名可用')
+    elif request.method == 'POST':
+        uname = request.POST['uname']
+        return HttpResponse('注册成功%s' % uname)

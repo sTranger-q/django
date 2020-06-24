@@ -12,9 +12,9 @@
 <body>
     <script>
         $(function () {
-            $('#id').blur(function () {
+            $('#uname').blur(function () {
                 var xhr = createXhr();
-                var url = '/judge_username?id=' + $('#id').val();
+                var url = '/judge_username?uname=' + $('#uname').val();
                 xhr.open('GET', url, true);
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -23,19 +23,34 @@
                 }
                 xhr.send(null);
             })
+            $('#btn').click(function () {
+                var xhr = createXhr();
+                xhr.open('POST', '/judge_username', true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        alert(xhr.responseText)
+                    }
+                }
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                var uname = $('#uname').val();
+                var pwd = $('#pwd').val();
+                var params = 'uname=' + uname + '&pwd' + pwd;
+                xhr.send(params);
+            })
         })
     </script>
+    {% csrf_token %}
     <p>
         <label for="username">
-            用户名：<input type="text" name="username" ,id='id'>
+            用户名：<input type="text" name="username" id='uname'>
         </label><span id='tip'></span>
     </p>
     <p>
         <label for="password">
-            密码: <input type="text" name="password">
+            密码: <input type="text" name="password" id='pwd'>
         </label>
     </p>
-
+    <button id='btn'>提交</button>
 </body>
 
 </html>
