@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/static/js/jquery.min.js"></script>
+</head>
+
+<body>
+    <button onclick='showJson()'>click me</button>
+</body>
+<script>
+    function showJson() {
+        //Json表达单个对象
+        //     var obj = {
+        //         "username": "wanglaoshi",
+        //         'age': 18
+        //     }
+        //     console.log('username:' + obj.username);
+        //     console.log('age:' + obj.age);
+        // json表达多个对象
+        var json_arr = [
+            {
+                "username": "guoxiaonao",
+                "age": 36
+            },
+            {
+                "username": "xiaoze",
+                "age": 18
+            }
+        ]
+        $(json_arr).each(function (index, obj) {
+            console.log(obj.username)
+            console.log(obj.age)
+        })
+    }
+</script>
+
+</html>

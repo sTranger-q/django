@@ -28,8 +28,14 @@ def judge_username(request):
         uname = request.POST['uname']
         return HttpResponse('注册成功%s' % uname)
 
+
 def test_jq_get(request):
-    return render(request,'test_jq_get.html')
+    return render(request, 'test_jq_get.html')
+
 
 def test_jq_get_server(request):
     return HttpResponse('This is jq Ajax')
+
+
+def test_json(request):
+    return render(request, 'test_json.html')
