@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery.min.js"></script>
+</head>
+<body>
+<form action="/book/" method="post">
+    <div>漫画名字<input type="text" name="ID" id="book_name"> <span id="name"></span></div>
+    <div>漫画ID<input type="text" name="ID" id="book_id"> <span id="ID"></span></div>
+    <div>起始章节 <input type="text" name="begin" id="begin"></div>
+    <div>结束章节 <input type="text" name="end" id="end"></div>
+</form>
+
+<button id="tijiao">图片改名</button>
+<script>
+    $('#book_name').on('change',function () {
+        $.ajax({
+            url:'/book/chapter/name',
+            type:'POST',
+            data:JSON.stringify({
+                name:$('#book_name').val(),
+            }),
+            dataType:'json',
+            success:function (res) {
+                $('#ID').text(res.result)
+            }
+        })
+    });
+    $('#book_id').on('change',function () {
+        $.ajax({
+            url:'/book/chapter/id',
+            type:'POST',
+            data:JSON.stringify({
+                id:$('#book_id').val(),
+            }),
+            dataType:'json',
+            success:function (res) {
+                $('#name').text(res.result)
+            }
+        })
+    })
+</script>
+<script>
+    $('#tijiao').click(function () {
+        $.ajax({
+            url:'/book/add',
+            type:'POST',
+            headers: {
+                'Authorization': window.localStorage.token
+            },
+            data:JSON.stringify({
+                id:$('#book_id').val(),
+                begin:$('#begin').val(),
+                end:$('#end').val(),
+            }),
+            dataType:'json',
+            success:function (res) {
+                console.log(res)
+            }
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=10.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🐱喵了个咪</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/loginform.css">
+    <script src="/static/js/jquery-1.11.3.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <style>
+        .parent {
+            width: 100%;
+            height: 200px;
+            padding: 20px 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #ffe;
+            opacity: 0.9;
+            box-shadow: 0 0 10px #f00;
+            position: relative;
+        }
+
+        nav .row {
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .content img {
+            width: 100%;
+            height: 100%;
+            transform: scale(0.95);
+            transition: 0.3s;
+        }
+
+        .content:hover img {
+            transform: scale(1);
+        }
+
+        #form {
+            margin-left: 560px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-10" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">图标</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-10">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/index">首页 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">排行</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">分类 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">类型一</a></li>
+                        <li><a href="#">类型二</a></li>
+                        <li><a href="#">类型三</a></li>
+                        <li><a href="#">类型四</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">其他</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form id="form" class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" id="search_input">
+                </div>
+            </form>
+            <button class="btn btn-default" id="search" onclick="search()">搜索</button>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a id="login" href="/user/login">登录</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">历史记录 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">第一条</a></li>
+                        <li><a href="#">第二条</a></li>
+                        <li><a href="#">第三条</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">更多</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <nav class="parent">
+        <div class="row">
+            <div class="col-lg-1 col-md-1">
+                <h4>种类</h4>
+            </div>
+            <div class="col-md-1 col-lg-1">
+                <a href="#" class="sn" id="32768" onclick="classify(32768)">少年</a>
+            </div>
+            <div class="col-md-1 col-lg-1">
+                <a href="#" class="shaon" id="16384" onclick="classify(16384)">少女</a>
+            </div>
+            <div class="col-md-1 col-lg-1">
+                <a href="#" class="rx" id="4096" onclick="classify(4096)">热血</a>
+            </div>
+            <div class="col-md-1 col-lg-1">
+                <a href="#" class="gx" id="2048" onclick="classify(2048)">搞笑</a>
+            </div>
+            <div class="col-md-1 col-lg-1">
+                <a href="#" class="kh" id="1024" onclick="classify(1024)">科幻</a>
+            </div>
+            <div class="col-md-1 col-lg-1">
+                <a href="#" class="hb" id="512" onclick="classify(512)">绘本</a>
+            </div>
+            <div class="col-md-1 col-lg-1">
+                <a href="#" class="xh" id="256" onclick="classify(256)">玄幻</a>
+            </div>
+            <div class="col-md-1 col-lg-1">
+                <a href="#" class="hy" id="128" onclick="classify(128)">悬疑</a>
+            </div>
+            <div class="col-md-1 col-lg-1">
+                <a href="#" class="kb" id="64" onclick="classify(64)">恐怖</a>
+            </div>
+            <div class="col-md-1 col-lg-1">
+                <a href="#" class="sh" id="32" onclick="classify(32)">生活</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 col-md-1">
+                <h4>地区</h4>
+            </div>
+            <div class="col-lg-1 col-md-1">
+                <a href="#" class="gm" id="8192" onclick="classify(8192)">国漫</a>
+            </div>
+            <div class="col-lg-1 col-md-1">
+                <a href="#" class="om" id="16" onclick="classify(16)">欧美</a>
+            </div>
+            <div class="col-lg-1 col-md-1">
+                <a href="#" class="gt" id="8" onclick="classify(8)">港台</a>
+            </div>
+            <div class="col-lg-1 col-md-1">
+                <a href="#" class="ds" id="4" onclick="classify(4)">都市</a>
+            </div>
+            <div class="col-lg-1 col-md-1">
+                <a href="#" class="ls" id="2" onclick="classify(2)">历史</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1 col-lg-1">
+                <h4>专题</h4>
+            </div>
+            <div class="col-md-1 col-lg-1">
+                <a href="#" class="tr" id="1" onclick="classify(1)">同人</a>
+            </div>
+        </div>
+    </nav>
+
+    <nav>
+        <ul class="pagination">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div id="parent">
+        <div class="noStart01">活动未开始</div>
+        <div class="noStart02">距离活动开始</div>
+        <div class="noStart03">距离秒杀活动结束<span><button id="secskill" type="buttom">秒杀</button></span></div>
+        <div id="ssss">
+            <span class="Hours"></span>时
+            <span class="Min"></span>分
+            <span class="Second"></span>秒
+        </div>
+    </div>
+    <section id="content-info">
+        <script>
+            $('#secskill').click(function () {
+                $.ajax({
+                    url: '/seckill',
+                    type: 'GET',
+                    headers: {
+                        'Authorization': window.localStorage.token
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        if (result.code == 200) {
+                            window.location = result.url
+                        } else {
+                            alert(result.error)
+                        }
+                    }
+                })
+            });
+        </script>
+        <script>
+            $('#ssss').ready(function () {
+                $('.noStart01')[0].style.display = 'block';
+                $('.noStart02')[0].style.display = 'none';
+                $('.noStart03')[0].style.display = 'none';
+                $.ajax({
+                    type: "GET",
+                    url: "/seckill/time",
+                    headers: {
+                        'Authorization': window.localStorage.token
+                    },
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.code == 200) {
+                            var time01 = res.timeout;
+                            var time02 = res.continue_time;
+                            // console.log(time01);
+                            var timer = setInterval(function () {
+                                // var time = new Date();
+                                if (time01 > 0) {
+                                    $('.noStart01')[0].style.display = 'none';
+                                    $('.noStart02')[0].style.display = 'block';
+                                    $('.noStart03')[0].style.display = 'none';
+                                    var hours = parseInt(time01 / 3600);
+                                    var minute = parseInt((time01 % 3600) / 60);
+                                    var second = parseInt((time01 % 3600) % 60);
+                                    $('.Hours').html(hours);
+                                    $('.Min').html(minute);
+                                    $('.Second').html(second);
+                                    time01--;
+                                } else {
+                                    $('.noStart01')[0].style.display = 'none';
+                                    $('.noStart02')[0].style.display = 'none';
+                                    $('.noStart03')[0].style.display = 'block';
+                                    // var time = new Date();
+                                    var hours = parseInt(time02 / 3600);
+                                    var minute = parseInt((time02 % 3600) / 60);
+                                    var second = parseInt((time02 % 3600) % 60);
+                                    $('.Hours').html(hours);
+                                    $('.Min').html(minute);
+                                    $('.Second').html(second);
+                                    time02--;
+                                }
+                                if (time02 < 0) {
+                                    $('.noStart01')[0].style.display = 'block';
+                                    $('.noStart02')[0].style.display = 'none';
+                                    $('.noStart03')[0].style.display = 'none';
+                                }
+                            }, 1000);
+                        } else {
+                            $('.noStart01')[0].style.display = 'block';
+                            $('.noStart02')[0].style.display = 'none';
+                            $('.noStart03')[0].style.display = 'none';
+                        }
+                    },
+                })
+            })
+        </script>
+        <script>
+            $(function () {
+                $(document).ready(function () {
+                    $.ajax({
+                        url: '/index/picture',
+                        type: 'GET',
+                        headers: {
+                            'Authorization': window.localStorage.token
+                        },
+                        dataType: 'json',
+                        success: function (res) {
+                            var html = '';
+                            $.each(res, function (index, obj) {
+                                // console.log(obj.id);
+                                if (index % 6 == 0) {
+                                    html += '<div class="row"><div class="col-lg-2 col-md-2"><div class="thumbnail content"><a href="/index/details?id=' + obj.id + '"><img src="';
+                                    html += obj.path;
+                                    html += '" alt="" class="responsive"></a><p class="caption"><a href="/index/details?id=' + obj.id + '">';
+                                    html += obj.name;
+                                    html += '</a></p></div></div>';
+                                } else if (index % 6 == 5) {
+                                    html += '<div class="col-lg-2 col-md-2"><div class="thumbnail content"><a href="/index/details?id=' + obj.id + '"><img src="';
+                                    html += obj.path;
+                                    html += '" alt="" class="responsive"></a><p class="caption"><a href="/index/details?id=' + obj.id + '">';
+                                    html += obj.name;
+                                    html += '</a></p></div></div></div>';
+                                } else {
+                                    html += '<div class="col-lg-2 col-md-2"><div class="thumbnail content"><a href="/index/details?id=' + obj.id + '"><img src="';
+                                    html += obj.path;
+                                    html += '" alt="" class="responsive"></a><p class="caption"><a href="/index/details?id=' + obj.id + '">';
+                                    html += obj.name;
+                                    html += '</a></p></div></div>';
+                                }
+                                $('#content-info').html(html);
+                            })
+                        }
+                    })
+                })
+            });
+
+            function classify(id) {
+                $.ajax({
+                    url: '/index/screen/' + id,
+                    type: 'GET',
+                    headers: {
+                        'Authorization': window.localStorage.token
+                    },
+                    dataType: 'json',
+                    success: function (res) {
+                        var html = '';
+                        $.each(res, function (index, obj) {
+                            // console.log(obj.id);
+                            if (index % 6 == 0) {
+                                html += '<div class="row"><div class="col-lg-2 col-md-2"><div class="thumbnail content"><a href="/index/details?id=' + obj.id + '"><img src="';
+                                html += obj.path;
+                                html += '" alt="" class="responsive"></a><p class="caption"><a href="/index/details?id=' + obj.id + '">';
+                                html += obj.name;
+                                html += '</a></p></div></div>';
+                            } else if (index % 6 == 5) {
+                                html += '<div class="col-lg-2 col-md-2"><div class="thumbnail content"><a href="/index/details?id=' + obj.id + '"><img src="';
+                                html += obj.path;
+                                html += '" alt="" class="responsive"></a><p class="caption"><a href="/index/details?id=' + obj.id + '">';
+                                html += obj.name;
+                                html += '</a></p></div></div></div>';
+                            } else {
+                                html += '<div class="col-lg-2 col-md-2"><div class="thumbnail content"><a href="/index/details?id=' + obj.id + '"><img src="';
+                                html += obj.path;
+                                html += '" alt="" class="responsive"></a><p class="caption"><a href="/index/details?id=' + obj.id + '">';
+                                html += obj.name;
+                                html += '</a></p></div></div>';
+                            }
+                            $('#content-info').html(html);
+                        })
+                    }
+                })
+            }
+
+            // function EnterPress(e){ //传入 event
+	    	// 	var e = e || window.event;
+	    	// 	if(e.keyCode == 13){
+	    	// 		document.getElementById("search_input").click();
+	    	// 	}
+			// }
+
+            function search() {
+                if ($('#search_input').val()) {
+                    $.ajax({
+                        url: '/index/search',
+                        type: 'POST',
+                        headers: {
+                            'Authorization': window.localStorage.token
+                        },
+                        dataType: 'json',
+                        data: JSON.stringify({words: $('#search_input').val()}),
+                        success: function (res) {
+                            var html = '';
+                            $.each(res, function (index, obj) {
+                                // console.log(obj.id);
+                                if (index % 6 == 0) {
+                                    html += '<div class="row"><div class="col-lg-2 col-md-2"><div class="thumbnail content"><a href="/index/details?id=' + obj.id + '"><img src="';
+                                    html += obj.path;
+                                    html += '" alt="" class="responsive"></a><p class="caption"><a href="/index/details?id=' + obj.id + '">';
+                                    html += obj.name;
+                                    html += '</a></p></div></div>';
+                                } else if (index % 6 == 5) {
+                                    html += '<div class="col-lg-2 col-md-2"><div class="thumbnail content"><a href="/index/details?id=' + obj.id + '"><img src="';
+                                    html += obj.path;
+                                    html += '" alt="" class="responsive"></a><p class="caption"><a href="/index/details?id=' + obj.id + '">';
+                                    html += obj.name;
+                                    html += '</a></p></div></div></div>';
+                                } else {
+                                    html += '<div class="col-lg-2 col-md-2"><div class="thumbnail content"><a href="/index/details?id=' + obj.id + '"><img src="';
+                                    html += obj.path;
+                                    html += '" alt="" class="responsive"></a><p class="caption"><a href="/index/details?id=' + obj.id + '">';
+                                    html += obj.name;
+                                    html += '</a></p></div></div>';
+                                }
+                                $('#content-info').html(html);
+                            })
+                        }
+                    })
+                }else{
+                    window.location.reload()
+                }
+            }
+        </script>
+        <script>
+            var username = window.localStorage.username;
+            console.log(username);
+            $('#login').text(username)
+        </script>
+    </section>
+</div>
+</body>
+</html>

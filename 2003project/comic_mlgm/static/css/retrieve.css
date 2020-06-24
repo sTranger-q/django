@@ -1,0 +1,158 @@
+/*注册页面样式*/
+
+ .parent {
+            width: 100%;
+            height: 200px;
+            padding: 20px 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #ffe;
+            opacity: 0.9;
+            box-shadow: 0 0 10px #f00;
+            position: relative;
+        }
+
+        nav .row {
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .content img {
+            width: 100%;
+            height: 100%;
+            transform: scale(0.95);
+            transition: 0.3s;
+        }
+
+        .content:hover img {
+            transform: scale(1);
+        }
+
+        #form {
+            margin-left: 560px;
+        }
+        .page{
+            width: 100%;
+            height: 100%;
+        }
+        .hide-center-2 {
+            width:350px;
+            height:500px;
+            position:absolute;
+            right:0;
+            left:0;
+            bottom:0;
+            top:0;
+            margin:auto;
+            z-index:1;
+        }
+        .hide-center-2 #formhead-2 {
+            width:400px;
+            height:42px;
+            margin:0;
+            padding-top:0;
+            padding-bottom:-30px;
+            background-color: #55acef;
+            border: 0.5px solid #55acef;
+        }
+        .hide-center-2 #formhead-title-2 {
+            width:100px;
+            height:40px;
+            padding-top: 5px;
+            margin-left:20px;
+            margin-right:36px;
+            color: #ffffff;
+            font-weight:900;
+            font-size: large;
+            text-align: center;
+            display:inline-block;
+        }
+        .hide-center-2 #formbody-2 {
+            width:400px;
+            height:400px;
+            background-color:white;
+            border: 0.5px solid #55acef;
+        }
+        .hide-center-2 .RegHead {
+            margin-right:-8px;
+            padding:13px;
+            width:25px;
+            height:28px;
+            background-color: #efefef;
+            vertical-align:middle;
+        }
+        .hide-center-2 .RegInput {
+            height:30px;
+            width:230px;
+            padding-left:10px;
+            background-color:#ffffff;
+            color: black;
+            border:1px solid #bebebe;
+        }
+        .hide-center-2 .RegUserName {
+            padding-left:30px;
+            padding-top:35px;
+            padding-bottom: 10px;
+        }
+        .hide-center-2 .RegEmail {
+            padding-top: 0;
+            padding-left:30px;
+            padding-bottom: 10px;
+        }
+        .hide-center-2 .RegVerify {
+            padding-top: 0;
+            padding-left:30px;
+            padding-bottom: 10px;
+        }
+        .hide-center-2 #Get_code {
+            border: 0;
+            background: #55acef;
+            color: #ffffff;
+            width: 100px;
+            height: 30px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .hide-center-2 #formfoot-2 {
+            margin-top:20px;
+            margin-left:30px;
+            margin-right: 30px;
+            border: 0;
+        }
+        .hide-center-2 #BSignIn-2 {
+            border:0;
+            background: #55acef;
+            color:#ffffff;
+            width:100px;
+            height:40px;
+            margin-left: 0px;
+            border-bottom-left-radius:5px;
+            border-bottom-right-radius:5px;
+            border-top-left-radius:5px;
+            border-top-right-radius:5px;
+        }
+        .hide-center-2 .RegPassword {
+            padding-left:30px;
+            padding-bottom: 10px;
+        }
+        .hide-center-2 #formfoot-3 {
+            margin-top:20px;
+            margin-left:30px;
+            margin-right: 30px;
+            border: 0;
+        }
+        .hide-center-2 #BSignIn-3 {
+            border:0;
+            background: #55acef;
+            color:#ffffff;
+            width:100px;
+            height:40px;
+            margin-left: 0px;
+            border-bottom-left-radius:5px;
+            border-bottom-right-radius:5px;
+            border-top-left-radius:5px;
+            border-top-right-radius:5px;
+        }
+

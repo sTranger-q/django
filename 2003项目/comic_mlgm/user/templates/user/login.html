@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/loginform.css">
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/jquery-1.11.3.js"></script>
+
+
+</head>
+<body>
+
+<div class="hide-center">
+    <div id="formhead">
+        <div id="formhead-title">
+            登录
+        </div>
+    </div>
+    <div id="formbody">
+        <div class="loginUserName">
+            <input id="input-topright-loginInput"
+                   name="userName" class="loginInput"
+                   placeholder=" 用户名" type="text"
+                   autocomplete="on" minlength="6" maxlength="18">
+        </div>
+        <div class="loginPassword">
+            <input id="input-bottomright-loginInput"
+                   name="password" class="loginInput"
+                   placeholder=" 密码：8-12位字母+数字"
+                   type="password" style="border-bottom-right-radius:5px;" autocomplete="off"
+                   minlength="8" maxlength="12">
+        </div>
+        <div class="LoginLink">
+
+        </div>
+<!--        <div class="remember">-->
+<!--            <input id="reme" type="checkbox">-->
+<!--            <span>记住我</span>-->
+<!--        </div>-->
+        <div id="formfoot">
+            <button id="BSignIn" type="button">确定登录</button>
+            <a href="/user/weibo_login">
+                <button id="BSignIn_weibo" type="button">微博登录</button>
+            </a>
+        </div>
+        <div class="LoginLink">
+            <a href="/user/register">马上注册</a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $("#input-topright-loginInput").blur(function(){
+        var username = $("#input-topright-loginInput").val();
+        $('.LoginLink')[0].innerHTML='<a href="/user/retrieve_passwd?username='+username+'">忘记密码</a>'
+    })
+    var remem = $("#reme").val();
+    console.log(remem)
+
+
+    //动态返回登录结果
+    $('#BSignIn').click(function () {
+        var username = $("#input-topright-loginInput").val();
+        var password = $("#input-bottomright-loginInput").val();
+        var reme = $("#reme").val();
+        console.log(reme);
+        var inputData = {'username':username, 'password':password};
+        if (username != '' && password != '') {
+            $.ajax({
+                type: 'POST',
+                url: '/user/login_server',
+                contentType:'application/json',
+                data: JSON.stringify(inputData),
+                success: function (result) {
+                    if (result.code == 200) { //登录成功
+                        window.localStorage.clear();
+                        window.localStorage.setItem('token', result.data.token);
+                        window.localStorage.setItem('username', result.username);
+                        alert('登录成功');
+                        window.location.href = '../index';
+                    } else { //登录失败
+                        alert(result.error);
+                    }
+                }
+            });
+        };
+    })
+
+
+</script>
+
+
+</body>
+</html>

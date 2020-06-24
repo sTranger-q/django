@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <form action="/user/check" class="login" method="post">
+                <div class="form-group">
+                    <label for="check_number">验证码：</label>
+                    <input type="text" name="check_number" class="form-control"
+                           id="ck">
+                </div>
+
+
+                <div class="form-group">
+                    <button class="btn btn-info" id="btn">验证</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% if messages %}
+    <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}')
+        {% endfor %}
+    </script>
+{% endif %}
+</body>
+</html>

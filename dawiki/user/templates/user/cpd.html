@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <form action="/user/cpd" class="login" method="post">
+                <div class="form-group">
+                    <label for="password">新密码：</label>
+                    <input type="password" id="password" name="password"
+                           class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="sure_pd">确认密码：</label>
+                    <input type="password" id="sure_pd" name="sure_pd"
+                           class="form-control">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-info" id="btn">确定</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% if messages %}
+    <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}')
+        {% endfor %}
+    </script>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <div class="container-fluid">
+        <div>导航栏</div>
+        <div id="nav_detail">
+            <h5></h5>
+        </div>
+        <div class="img"><img src="..." class="img-responsive" alt="Responsive image"></div>
+        <nav>
+            for (i = 0; i < 24; i++)
+            {
+                <div>
+                    <div>
+                        <img src="...">
+                        //这地方图片 可以读取整个图片的前几行,f.read(),做个简单的小展示
+                        //考虑下觉得不太行,这页面读取的太多了,加载太费劲了,图片很容易就挂了，具体你们看看别的漫画怎么做的，参照下
+                    </div>
+                    <h5>第i话 +{{ chapter_name }}</h5>
+                    //这地方就是 这一话叫什么名字，可以从chapter表里面获取
+                </div>
+            }
+
+
+
+            {# 分页 标签#}
+                <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                </ul>
+        </nav>
+        <div>评论区</div>
+         //评论区等我满血复活再跟你们说
+    </div>
+</body>
+</html>

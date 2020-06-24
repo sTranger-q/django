@@ -38,5 +38,12 @@
     </div>
 </div>
 <script src="/static/js/reg.js"></script>
+{% if messages %}
+    <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}')
+        {% endfor %}
+    </script>
+{% endif %}
 </body>
 </html>

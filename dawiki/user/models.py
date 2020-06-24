@@ -7,8 +7,7 @@ class User(models.Model):
     password = models.CharField("密码", max_length=32)
     created_time = models.DateTimeField('创建时间', auto_now_add=True)
     updated_time = models.DateTimeField('更新时间', auto_now=True)
+    email = models.EmailField('邮箱', default='')
 
     def __str__(self):
         return "用户" + self.username
-
-

@@ -1,8 +1,21 @@
+import random
+from django.core import mail
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from .models import *
 import hashlib
 from django.contrib import messages
+import redis
+
+Pool = redis.ConnectionPool(host='127.0.0.1', port=6379, db=6)
+r = redis.Redis(connection_pool=Pool)
+
+
+def creat_check_number():
+    lis = []
+    for i in range(6):
+        lis.append(str(random.randint(0, 9)))
+    return ''.join(lis)
 
 
 # Create your views here.
@@ -120,3 +133,77 @@ def logout_view(request):
     if 'uid' in request.COOKIES:
         response.delete_cookie('uid')
     return response
+
+
+def forget_view(request):
+    if request.method == 'GET':
+        return render(request, 'user/forget.html')
+    elif request.method == 'POST':
+        email = request.POST.get('mailAddr')
+        username = request.POST.get('username')
+        if not email or not username:
+            messages.error(request, '请输入邮箱/用户名')
+            return HttpResponseRedirect('/user/forget')
+        try:
+            user = User.objects.get(username=username)
+        except Exception as e:
+
+            messages.error(request, '用户名不存在:%s' % e)
+            return HttpResponseRedirect('/user/forget')
+        if user.email == email:
+            # 发验证码 待改进
+            check_number = creat_check_number()
+            key = f'forget:{user.id}'
+            r.set(key, check_number, ex=180, nx=True)
+            request.session['forget_uid'] = user.id
+            mail.send_mail('验证码',
+                           check_number,
+                           '853561128@qq.com',
+                           recipient_list=[email])
+            return HttpResponseRedirect('/user/check')
+        else:
+            messages.error(request, '邮箱错误')
+            return HttpResponseRedirect('/user/forget')
+
+
+def check_view(request):
+    if request.method == 'GET':
+        return render(request, 'user/check.html')
+    elif request.method == 'POST':
+        check_input = request.POST['check_number']
+        uid = request.session['forget_uid']
+        key = f'forget:{uid}'
+        check_number = r.get(key).decode()
+        if str(check_input) == str(check_number):
+            return HttpResponseRedirect('/user/cpd')
+        else:
+            messages.error(request, '验证码错误')
+            return HttpResponseRedirect('/user/forget')
+
+
+def cpd_view(request):
+    if request.method == 'GET':
+        return render(request, 'user/cpd.html')
+    elif request.method == 'POST':
+        pd1 = request.POST['password']
+        pd2 = request.POST['sure_pd']
+        if pd1 != pd2:
+            messages.error(request, '两次输入密码不同')
+            return HttpResponseRedirect('user/cpd')
+        uid = request.session['forget_uid']
+        user = User.objects.get(id=uid)
+        # 密码处理
+        # hash算法:明文--->hash值
+        # 1.算法恒定 定长输出
+        m = hashlib.md5()
+        m.update(pd1.encode())
+        password_h = m.hexdigest()
+        user.password = password_h
+        user.save()
+
+        # 处理session
+        del request.session['forget_uid']
+        request.session['username'] = user.username
+        request.session['uid'] = user.id
+        messages.success(request, '注册成功')
+        return HttpResponseRedirect('/')

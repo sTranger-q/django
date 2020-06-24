@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/static/js/jquery.min.js"></script>
+    <title>下拉1</title>
+    <style>
+        .d1{
+            width: 200px;
+            height: 25%;
+            background-color: pink;
+            color: #000;
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            }
+    </style>
+</head>
+<body>
+
+
+<div class="d1"></div>
+
+
+<div id="container" style="text-align: center"></div>
+<div class="scrollerFooter1">
+    没有内容了
+</div>
+
+<script>
+    var bookID = {{ book_id }};
+    var chapterID = {{ chapter_id }};
+    var page = 1;
+
+    function infinityScroll(footerNode, callback) {
+        var observer = new IntersectionObserver(function (changes) {
+            if (changes[0].intersectionRatio <= 0) return;
+            callback();
+        });
+        observer.observe(document.querySelector(footerNode));
+    }
+    infinityScroll('.scrollerFooter1', function pictuer(i=3) {
+        $.ajax({
+            url: '/index/content/' + bookID + '/' + chapterID + '/' + page,
+            type: 'GET',
+            headers: {
+                'Authorization': window.localStorage.token
+            },
+            dataType: 'json',
+            success: function (res) {
+                html_1 = res.url;
+                if (html_1) {
+                    html_1 = '<div class="img-area"><img class="my-photo" alt="loading" src="' + html_1;
+                    html_1 += '"/></div>';
+                    $('#container').append(html_1);
+                    window.bookID = res.book_id;
+                    window.chapterID = res.chapter_id;
+                    window.page = res.page_id;
+                    $('.d1').text('当前🥌是第：' + res.chapter_id + '章');
+                    i -= 1;
+                    if (i) {
+                        pictuer(i)
+                    }
+                } else {
+                    $('#container').append('<h1>没有了</h1>');
+                    return null
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+
+

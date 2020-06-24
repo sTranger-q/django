@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>漫画</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/init.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div>导航栏</div>
+        <div id="nav_detail">
+            <h5></h5>  
+        </div>
+        <div class="img"><img src="..." class="img-responsive" alt="Responsive image"></div>
+        <nav>
+            {# 分页 标签#}
+                <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                </ul>
+        </nav>
+        <div>评论区</div>
+    </div>
+    <script>
+        (function($){
+            $.getUrlParam = function(name){
+                var reg = new RegExp("(^|&)"+name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r!=null) return r;
+                return null;
+            }
+            var skuid = $.getUrlParam('skuid')[2]
+            $.ajax({
+                url:baseUrl + '/v1/cartoon/'+skuid,
+                type:'get',
+                success:function(result){
+                    var IMG_URL = result.base_url;
+                    $('#nav_detail').html(
+                        "<h5><a href='...'>首页</a> - <a href='...'> </a>"
+                    )
+                }
+            })
+        })(jQuery)
+    </script>
+</body>
+</html>

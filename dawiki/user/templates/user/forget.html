@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <form action="/user/forget" class="login" method="post">
+                <div class="form-group">
+                    <label for="username">用户名：</label>
+                    <input type="text" name="username" class="form-control"
+                           id="username">
+                </div>
+                <div class="form-group">
+                    <label for="mailAddr">邮箱：</label>
+                    <input type="email" id="email" name="mailAddr"
+                           class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-info" id="btn">接受验证码</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% if messages %}
+    <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}')
+        {% endfor %}
+    </script>
+{% endif %}
+</body>
+</html>

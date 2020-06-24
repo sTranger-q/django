@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/register.css">
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/jquery-1.11.3.js"></script>
+
+</head>
+<body>
+
+
+<div class="hide-center-2">
+    <div class="overCurtain"></div>
+    <div id="formhead-2">
+        <div id="formhead-title-2">
+            <img src="" style="border: 1px solid black"> | <span>注册</span>
+        </div>
+    </div>
+    <div id="formbody-2">
+        <div class="RegUserName">
+            <input id="input-topright-RegInput"
+                   name="username" class="RegInput"
+                   placeholder="请设置用户名" type="text"
+                   title="请输入6-18位字母,数字,减号,下划线,以字母开头">
+            <span class="msg-default hidden">6-18位字母,数字或下划线,以字母开头</span>
+        </div>
+        <div class="RegPassword">
+            <input id="input-body01right-RegInput"
+                   name="password_1" class="RegInput"
+                   placeholder="设置密码：8-12位英文字母+数字"
+                   type="password" style="border-bottom-right-radius:5px;"
+                   title="输入8-12位英文字母+数字,以字母开头"
+                   minlength="6" maxlength="12">
+            <span class="msg-default hidden">8-12位英文字母或数字</span>
+        </div>
+        <div class="RegPassword">
+            <input id="input-body02right-RegInput"
+                   name="password_2" class="RegInput"
+                   placeholder="确认密码" type="password" style="border-bottom-right-radius:5px;"
+                   title="再次确认密码" minlength="6" maxlength="12">
+            <span class="msg-default hidden">8-12位英文字母或数字</span>
+        </div>
+        <div class="RegEmail">
+            <input id="input-body03right-RegInput"
+                   name="email" class="RegInput"
+                   placeholder="邮箱" type="text" style="border-bottom-right-radius:5px;"
+                   title="邮箱请慎重填写,找回密码时需要使用">
+            <span class="msg-default hidden">请输入合法的邮箱地址</span>
+        </div>
+        <div class="RegVerify">
+            <input id="input-verification-code" name="v_code"
+                   class="RegInput" type="text" style="border-bottom-right-radius:5px;">
+            <span><button id="BSignIn-1" type="button">发送验证码</button></span>
+        </div>
+        <div class="Agreement" title="请仔细阅读并用户使用协议和隐私条款后注册">
+            <input type="checkbox" name=""
+                    id="agreement">
+            <span>我已同意</span>
+            <a href="">
+                用户使用协议
+            </a>
+            和
+            <a href="">
+                隐私政策
+            </a>
+        </div>
+
+        <div id="formfoot-2">
+            <button id="BSignIn-2" type="button" disabled="disabled">确认注册</button>
+            <a href="/user/login">
+                <button id="BSignUp-3" type="button">点我登录</button>
+            </a>
+            <a href="/user/weibo_login">
+                <button id="BSignUp-4" type="button">微博登录</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+// 复选框选中状态后触发启动注册按钮,取消选中禁用注册按钮
+    $(function() {
+        $('#agreement').click(function() {
+            if ($(this).is(':checked')) {
+                $('#BSignIn-2').removeAttr('disabled');
+            } else {
+                $('#BSignIn-2').attr('disabled',true);
+                alert("请仔细阅读并用户使用协议和隐私条款后注册")
+            }
+        });
+    });
+
+
+
+
+</script>
+
+<script>
+
+    function checkUser(){
+        var userReg=/^[a-zA-Z]([_A-Za-z0-9]{5,17})$/;
+        return userReg.test($('#input-topright-RegInput').val())
+    }
+    function checkPWD01(){
+        var pwd01Reg=/([A-Za-z0-9]{8,12})$/;
+        return pwd01Reg.test($('#input-body01right-RegInput').val())
+    }
+    function checkPWD02(){
+        var pwd02Reg=/([A-Za-z0-9]{8,12})$/;
+        return pwd02Reg.test($('#input-body02right-RegInput').val())
+    }
+    function checkEmail(){
+　　     var emailReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+    　　 return emailReg.test($('#input-body03right-RegInput').val())
+    }
+    
+
+    $('#input-topright-RegInput').blur(function () {
+        console.log(checkUser());
+        if(checkUser()){
+            $('.msg-default')[0].setAttribute('class','msg-default hidden')
+        }else {
+            $('.msg-default')[0].setAttribute('class','msg-default')
+        }
+    });
+    $('#input-body01right-RegInput').blur(function () {
+        console.log(checkPWD01());
+        if(checkPWD01()){
+            $('.msg-default')[1].setAttribute('class','msg-default hidden')
+        }else {
+            $('.msg-default')[1].setAttribute('class','msg-default')
+        }
+    });
+    $('#input-body02right-RegInput').blur(function () {
+        console.log(checkPWD02());
+        if(checkPWD02()){
+            $('.msg-default')[2].setAttribute('class','msg-default hidden')
+        }else {
+            $('.msg-default')[2].setAttribute('class','msg-default')
+        }
+    });
+    $('#input-body03right-RegInput').blur(function () {
+        console.log(checkEmail());
+        if(checkEmail()){
+            $('.msg-default')[3].setAttribute('class','msg-default hidden')
+        }else {
+            $('.msg-default')[3].setAttribute('class','msg-default')
+        }
+    });
+
+
+
+    $('#BSignIn-1').click(function(){
+    if(checkUser()&&checkPWD01()&&checkPWD02()&&checkEmail()){
+        $.ajax({
+            type:"post",
+            url:"/user/send_verification_code",
+            contentType:'application/json',
+            datatype:"json",
+            data:JSON.stringify({
+                "username": $('#input-topright-RegInput').val(),
+                "email": $('#input-body03right-RegInput').val(),
+            }),
+            success:function(data){
+                if(data.code === 200){
+                    var num=120;
+                    var timer = setInterval(function(){
+                        document.getElementById('BSignIn-1').innerText=num+'s';
+                        num--;
+                        if(num < 0){
+                            clearInterval(timer);
+                            document.getElementById('BSignIn-1').innerText='重新发送验证码';
+                        }
+                    },1000);
+                    alert("验证码已发送,请在两分钟内进行验证");
+                }else{
+                    alert(data.error);
+                }
+            },
+        });
+    };
+    })
+
+    $('#BSignIn-2').click(function () {
+    if(checkUser()&&checkPWD01()&&checkPWD02()&&checkEmail()){
+        $.ajax({
+        type: "post",
+        url: "/user/register_server",
+        contentType:'application/json',
+        datatype: "json",
+        data: JSON.stringify({
+          "username": $('#input-topright-RegInput').val(),
+          "password_1": $('#input-body01right-RegInput').val(),
+          "password_2": $('#input-body02right-RegInput').val(),
+          "email": $('#input-body03right-RegInput').val(),
+          "v_code": $('#input-verification-code').val(),
+        }),
+        success: function(data){ //成功的回调函数
+            if(data.code === 200){
+                alert('注册成功');
+                window.location.href = "login";
+            }else {
+                alert(data.error);
+            }
+        },
+      });
+    };
+    })
+
+
+</script>
+
+</body>
+</html>

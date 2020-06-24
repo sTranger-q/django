@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加新的漫画</title>
+    <script src="/static/js/jquery.min.js"></script>
+</head>
+<body>
+<form action="" method="post">
+    <h1>创建一本新的漫画</h1>
+    <div>书名 <input type="text" name="book_name" id="book_name"> <span id="book"></span></div>
+    <div>作者 <input type="text" name="book_writer" id="book_writer"></div>
+    <div>标签 <input type="text" name="" id="book_classify"></div>
+</form>
+<button id="tijiao">创建新的漫画</button>
+<script>
+    $('#book_name').on('change',function () {
+        $.ajax({
+            url:'/book/book',
+            type:'POST',
+            data:JSON.stringify({
+                name:$('#book_name').val(),
+            }),
+            dataType:'json',
+            success:function (res) {
+                $('#book').text(res.result)
+            }
+        })
+    })
+</script>
+<script>
+    $('#tijiao').click(function () {
+        $.ajax({
+            url:'/book/new_book',
+            type:'POST',
+            headers: {
+                'Authorization': window.localStorage.token
+            },
+            data:JSON.stringify({
+                book_name:$('#book_name').val(),
+                book_writer:$('#book_writer').val(),
+                book_classify:$('#book_classify').val(),
+            }),
+            dataType:'json',
+            success:function (res) {
+                console.log(res)
+            }
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery.min.js"></script>
+</head>
+<body>
+<div id="seckill_div"></div>
+<script>
+    $.ajax({
+        url: '/seckill/ceshi',
+        type: 'GET',
+        headers: {
+            'Authorization': window.localStorage.token
+        },
+        dataType: 'json',
+        success: function (res) {
+            if (res.code == 200){
+                    $('#seckill_div').append('<button id="seckill_button">秒杀</button>')
+                }
+            setTimeout(function () {
+                $('#seckill_button').click(function () {
+                    $.ajax({
+                        url: '/seckill/ceshi2',
+                        type: 'GET',
+                        headers: {
+                            'Authorization': window.localStorage.token
+                        },
+                        dataType: 'json',
+                        success: function (result) {
+                            if (result.code == 200) {
+                                window.location = result.url
+                            } else {
+                                alert(result.error)
+                            }
+                        }
+                    })
+                });
+            }, res.timeout * 1000);
+            setTimeout(function () {
+                $('#seckill_button').remove();
+            },(res.timeout+res.continue_time) * 1000)
+        }
+    })
+</script>
+</body>
+</html>
