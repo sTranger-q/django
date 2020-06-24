@@ -3,7 +3,7 @@ function createXhr(){
         var xhr=new XMLHttpRequest();
         
     }else{
-        var xhr=new ActiveXObject('Microsoft.XMLHTTP')
+        var xhr=new ActiveXObject('Microsoft.XMLHTTP');
     }
-    return xhr
+    return xhr;
 }
