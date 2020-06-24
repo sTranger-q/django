@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/static/js/jquery.min.js"></script>
+</head>
+
+<body>
+    <button id='btn'>click me</button>
+    <div id='div'></div>
+</body>
+<script>
+    $(function () {
+        $('#btn').on('click', function () {
+            $.ajax({
+                url: '/test_jq_get_server',
+                type: 'GET',
+                success:function(response){
+                    $('#div').html(response)
+                }
+            })
+        })
+    })
+
+
+</script>
+
+</html>
