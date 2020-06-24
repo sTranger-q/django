@@ -23,7 +23,8 @@ def judge_username(request):
         uname = request.GET['uname']
         if uname == 'stranger':
             return HttpResponse('用户名已存在')
-        return HttpResponse('用户名可用')
+        return HttpResponse('用户名可用%s' % uname)
     elif request.method == 'POST':
         uname = request.POST['uname']
         return HttpResponse('注册成功%s' % uname)
+

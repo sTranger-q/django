@@ -21,3 +21,32 @@ function getXhr() {
     xhr.send(null);
 }
 
+$(function () {
+    $('#uname').blur(function () {
+        var xhr = createXhr();
+        var url = '/judge_username?uname=' + $('#uname').val();
+        xhr.open('GET', url, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                $('#tip').html(xhr.responseText);
+            }
+        }
+        xhr.send(null);
+    })
+    $('#btn').click(function () {
+        var xhr = createXhr();
+        xhr.open('POST', '/judge_username', true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                alert(xhr.responseText)
+            }
+        }
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        var uname = $('#uname').val();
+        var pwd = $('#pwd').val();
+        var csrf = $("[name='csrfmiddlewaretoken']").val();
+        var params = 'uname=' + uname + '&pwd' + pwd 
+        + '&csrfmiddlewaretoken=' + csrf;
+        xhr.send(params);
+    })
+})
