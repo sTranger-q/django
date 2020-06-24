@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('test', views.test_view),
     path('test_xhr_get',views.test_xhr_get),
+    path('test_xhr_get_server',views.test_xhr_get_server),
 ]
