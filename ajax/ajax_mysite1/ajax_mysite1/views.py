@@ -18,7 +18,7 @@ def reg_view(request):
     return render(request, 'reg.html')
 
 def judge_username(request):
-    uname=request.GET['username']
+    uname=request.GET['id']
     if uname=='stranger':
         return HttpResponse('用户名已存在')
     return HttpResponse('用户名可用')

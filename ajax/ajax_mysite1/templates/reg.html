@@ -10,20 +10,11 @@
 </head>
 
 <body>
-    <form action="#">
-        <label for="username">
-            用户名：<input type="text" name="username" ,id='username'>
-        </label><span id='tip'></span>
-        <br>
-        <label for="password">
-            密码: <input type="password" name="password">
-        </label>
-    </form>
     <script>
         $(function () {
-            $('#username').blur(function () {
+            $('#id').blur(function () {
                 var xhr = createXhr();
-                var url = '/judge_username?username=' + $('#username').val();
+                var url = '/judge_username?id=' + $('#id').val();
                 xhr.open('GET', url, true);
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -34,6 +25,17 @@
             })
         })
     </script>
+    <p>
+        <label for="username">
+            用户名：<input type="text" name="username" ,id='id'>
+        </label><span id='tip'></span>
+    </p>
+    <p>
+        <label for="password">
+            密码: <input type="text" name="password">
+        </label>
+    </p>
+
 </body>
 
 </html>
