@@ -15,6 +15,7 @@ function getXhr(){
         if(xhr.readyState==4&&xhr.status==200){
             var div=document.getElementById('show');
             div.innerHTML=xhr.responseText;
+            // 增加计时器，限制按钮点击次数
         }
     }
     xhr.send(null);
