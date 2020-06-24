@@ -45,8 +45,8 @@ $(function () {
         var uname = $('#uname').val();
         var pwd = $('#pwd').val();
         var csrf = $("[name='csrfmiddlewaretoken']").val();
-        var params = 'uname=' + uname + '&pwd' + pwd 
-        + '&csrfmiddlewaretoken=' + csrf;
+        var params = 'uname=' + uname + '&pwd' + pwd
+            + '&csrfmiddlewaretoken=' + csrf;
         xhr.send(params);
     })
 })
