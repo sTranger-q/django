@@ -35,6 +35,15 @@
             console.log(obj.username)
             console.log(obj.age)
         })
+
+        // xhr 拿到 符合json格式的字符串
+        var json_str = '[{"uname": "aa"}, {"uname": "bb"}]';
+        var json_obj = JSON.parse(json_str);
+        $(json_obj).each(function (index, obj) {
+            console.log(obj.uname);
+
+        })
+
     }
 </script>
 

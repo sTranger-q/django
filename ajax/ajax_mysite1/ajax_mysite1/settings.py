@@ -72,8 +72,12 @@ WSGI_APPLICATION = 'ajax_mysite1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ajax_mysite1',
+        'USER': 'root',
+        'PASSWORD': 'z03014299',
+        'HOST': '127.0.0.1',
+        'PORT': '3306'
     }
 }
 
@@ -113,6 +117,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS=(
-    os.path.join(BASE_DIR,'static'),
-    )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
