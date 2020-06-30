@@ -118,8 +118,9 @@ A ny individuals and organizations and not for commercial use, professiona websi
 			data: JSON.stringify(post_data),
 			contentType: 'application/json',
 			// json提交 end
-			success: function () {
-				alert('注册中~~')
+			success: function (data) {
+				console.log(data);
+				alert('注册中~~');
 			}
 		})
 	}

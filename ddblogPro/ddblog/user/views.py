@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views import View
 
@@ -20,4 +20,6 @@ class UserView(View):
         return HttpResponse('--CBV get view')
 
     def post(self, request):
-        return HttpResponse('--CBV post view')
+        print('----POST comming')
+        return JsonResponse({'data': 'ok'})
+        # return HttpResponse('{"data":"ok"}')
