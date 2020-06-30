@@ -100,6 +100,28 @@ A ny individuals and organizations and not for commercial use, professiona websi
 		var password_1 = $('.password_1').val();
 		var password_2 = $('.password_2').val();
 		var phone = $('.phone').val();
+		var post_data = {
+			"username": username,
+			"email": email,
+			"password_1": password_1,
+			"password_2": password_2,
+			"phone": phone,
+		};
+		// console.log(post_data);
+		$.ajax({
+			url: 'http://127.0.0.1:8000/v1/users',
+			type: 'POST',
+			// dataType--->服务端返回数据格式
+			dataType: 'json',
+			// json提交 start
+			// 将json对象序列化成字符串
+			data: JSON.stringify(post_data),
+			contentType: 'application/json',
+			// json提交 end
+			success: function () {
+				alert('注册中~~')
+			}
+		})
 	}
 
 </script>
