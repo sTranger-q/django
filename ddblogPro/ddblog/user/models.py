@@ -21,6 +21,7 @@ class UserProfile(models.Model):
     sign = models.CharField('个性签名', max_length=50, default=default_sign)
     info = models.CharField('信息', max_length=150, default='')
     avatar = models.ImageField('头像', upload_to='avatar', null=True)
+    phone = models.CharField('电话', max_length=11, default='')
     created_time = models.DateTimeField('创建时间', auto_now_add=True)
     updated_time = models.DateTimeField('上次更新', auto_now=True)
 
