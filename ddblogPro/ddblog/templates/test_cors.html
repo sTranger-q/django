@@ -7,6 +7,18 @@
 </head>
 <body>
 <button id="btn">click me</button>
-
+<script>
+    $(function () {
+        $('#btn').on('click', function () {
+            $.ajax({
+                url: "http://localhost:8000/test_cors_server",
+                type: "GET",
+                success: function (data) {
+                    alert(data);
+                }
+            })
+        })
+    })
+</script>
 </body>
 </html>
