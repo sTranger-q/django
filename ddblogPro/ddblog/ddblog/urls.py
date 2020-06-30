@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from user import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('test_cors', views.test_cors),
     path('test_cors_server', views.test_cors_server),
+    path('v1/users', user_views.users_view),
 
 ]
