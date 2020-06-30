@@ -148,3 +148,6 @@ CORS_ALLOW_HEADERS = (
     'x-csrftoken',
     'x-requested-with',
 )
+
+# 自定义jwt:key
+JWT_TOKEN_KEY = 'stranger'

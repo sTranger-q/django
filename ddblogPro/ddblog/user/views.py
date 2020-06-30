@@ -1,9 +1,13 @@
+import time
+
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views import View
 import json
 from .models import UserProfile
 import hashlib
+from django.conf import settings
+import jwt
 
 
 # Create your views here.
@@ -64,5 +68,17 @@ class UserView(View):
             res = {'code': 10103, 'error': 'register is defeated'}
             return JsonResponse(res)
         # jwt
-        return JsonResponse({'code': 200})
+        token = make_token(username)  # byte
+
+        return JsonResponse({'code': 200, 'data': {'token': token.decode()}})
         # return HttpResponse('{"data":"ok"}', content_type='application/json')
+
+
+def make_token(username, expire=3600 * 24):
+    key = settings.JWT_TOKEN_KEY
+    now = time.time()
+    payload = {
+        'exp': now + expire,
+        'username': username
+    }
+    return jwt.encode(payload=payload, key=key, algorithm='HS256')

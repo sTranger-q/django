@@ -118,13 +118,15 @@ A ny individuals and organizations and not for commercial use, professiona websi
 			data: JSON.stringify(post_data),
 			contentType: 'application/json',
 			// json提交 end
-			success: function (data) {
-				if (data.code == 200) {
+			success: function (res) {
+				if (res.code == 200) {
 					// console.log(data);
 					alert('注册成功');
-				}else{
-					console.log(data.error)
-					alert('注册失败');
+					// JS操作本地存储 存入token
+					window.localStorage.setItem('dnblog_token', res.data.token);
+				} else {
+
+					alert(res.error);
 				}
 
 
