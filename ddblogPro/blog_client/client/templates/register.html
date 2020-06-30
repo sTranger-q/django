@@ -119,9 +119,16 @@ A ny individuals and organizations and not for commercial use, professiona websi
 			contentType: 'application/json',
 			// json提交 end
 			success: function (data) {
-				console.log(data);
-				alert('注册中~~');
+				if (data.code == 200) {
+					console.log(data);
+					alert('注册成功');
+				}else{
+					alert('注册失败');
+				}
+
+
 			}
+			// error:function...
 		})
 	}
 
