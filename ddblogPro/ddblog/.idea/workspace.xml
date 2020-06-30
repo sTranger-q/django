@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c5fc7f85-6903-402c-b9b6-d52edc18aba3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddblog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ddblog/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +100,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1593485842670</updated>
-      <workItem from="1593485843928" duration="4383000" />
+      <workItem from="1593485843928" duration="6143000" />
     </task>
     <task id="LOCAL-00001" summary="ddblog">
       <created>1593485860301</created>
